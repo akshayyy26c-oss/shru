@@ -2,40 +2,21 @@
 require("dotenv").config();
 
 const app = require("./app");
-const { connectDB, pool } = require("../config/db");
+const db = require("./config/db");
 
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
     try {
-        // CONNECT MYSQL
-        await connectDB();
+        await db.query("SELECT 1");
 
-        // START EXPRESS
-        const server = app.listen(PORT, () => {
-            console.log("----------------------------------");
-            console.log("ANGRY BIRD FRIENDSHIP SERVER");
-            console.log("----------------------------------");
-            console.log(`Server: http://localhost:${PORT}`);
-            console.log(`Environment: ${process.env.NODE_ENV}`);
-            console.log("----------------------------------");
+        console.log("MySQL connected successfully");
+
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`Server running on port ${PORT}`);
         });
-
-        // GRACEFUL SHUTDOWN
-        const shutdown = () => {
-            console.log("Shutting down server...");
-
-            server.close(async () => {
-                await pool.end();
-                process.exit(0);
-            });
-        };
-
-        process.on("SIGINT", shutdown);
-        process.on("SIGTERM", shutdown);
-
     } catch (error) {
-        console.error("Server startup failed:", error.message);
+        console.error("Database connection failed:", error.message);
         process.exit(1);
     }
 }
