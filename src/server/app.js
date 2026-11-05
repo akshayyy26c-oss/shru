@@ -3,10 +3,10 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const contentRoutes = require("./routes/contentRoutes");
-const responseRoutes = require("./routes/responseRoutes");
+const contentRoutes = require("../routes/contentRoutes");
+const responseRoutes = require("../routes/responseRoutes");
 
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("../middleware/errorHandler");
 
 const app = express();
 
