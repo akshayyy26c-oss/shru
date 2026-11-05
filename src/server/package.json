@@ -1,7 +1,6 @@
 {
   "name": "angry-bird-backend",
   "version": "1.0.0",
-  "description": "Angry Bird Friendship Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,6 +12,7 @@
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^5.2.1",
+    "helmet": "^8.1.0",
     "mysql2": "^3.22.5"
   },
   "devDependencies": {
